@@ -1,21 +1,32 @@
-const http = require('http');
-const url = require('url');
+const express = require("express");
+const app = express();
+app.get("/",(request,response)=>{
+  response.send("hello");
+});
+app.get("/profile",(request,response)=>{
+  response.send("profile page");
+});
+const server=app.listen('8080',()=>{
+ // console.log("server running on port "+server.address().port+".");
+  console.log(`server running on port:${server.address().port}.`);
+  
+});
 
-const getQueryString=urlstring=>{
-    try{
-        return url.parse(urlstring).query;
-    }
-    catch(e){
- return{};
-    }
-};
-http.createServer( (req, res) =>{
-     // res.write('Hello World!'); //write a response to the client
-   //res.writeHead(200, {'Content-Type': 'text/html'});// mime type
-    const queryObject=getQueryString(req.url);
-    res.writeHead(200, {'Content-Type':'application/Json'});
-    //res.write(JSON.stringify({status:"sucess"})); //passing content type as Json
-    res.write(JSON.stringify(queryObject));
-    res.end(); //end the response
-  }).listen(8000); //the server object listens on port 8080
+
+
+
+//const http = require('http');
+//const getQueryString=require("./getQueryString");
+
+
+//http.createServer( (req, res) =>{
+     
+  // res.writeHead(200, {'Content-Type': 'text/html'});// mime type
+   // const queryObject=getQueryString(req.url);
+   // res.writeHead(200, {'Content-Type':'application/json'});
+   // res.write(JSON.stringify(queryObject));
+   // console.log("hello");
+    
+   // res.end(); //end the response
+  //}).listen(8080); //the server object listens on port 8080
   
